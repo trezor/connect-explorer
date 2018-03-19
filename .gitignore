@@ -1,7 +1,14 @@
-build
+
 
 # Dependency directory
 node_modules
+src
+webpack
+.babelrc
+browserlist
+package.json
+README.md
+yarn.lock
 
 # OSX
 .DS_Store
