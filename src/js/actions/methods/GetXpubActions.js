@@ -91,10 +91,7 @@ export function onGetXpub(params: any): any {
                 // const response = 'A';
       
         const response = await TrezorConnect.getPublicKey({
-            //...params,
-            path: "m/46'/60'/0'",
-            confirmation: false,
-            transformFormat: true,
+            ...params,
             useEmptyPassphrase: true,
         });
 
