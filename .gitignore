@@ -4,8 +4,9 @@
 node_modules
 src
 webpack
+build
 .babelrc
-browserlist
+./browserlist
 package.json
 README.md
 yarn.lock
