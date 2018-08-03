@@ -5,8 +5,7 @@ When the button's clicked:
 */
 
 function onClick() {
-    // window.__TREZOR_CONNECT_SRC = 'http://localhost:8082/';
-    window.TrezorConnect.getAddress({ 
+    TrezorConnect.getAddress({ 
         path: "m/49'/0'/0'/0/0"
     }).then(response => {
         const message = response.success ? `BTC Address: ${ response.payload.address }` : `Error: ${ response.payload.error }`;
