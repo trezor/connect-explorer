@@ -1,0 +1,29 @@
+
+
+# Dependency directory
+node_modules
+src
+webpack
+build
+.babelrc
+./browserlist
+package.json
+README.md
+yarn.lock
+
+# OSX
+.DS_Store
+
+# Editors
+.idea
+.vscode
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+logs
+*.log
+.yarnclean
+
+# Local config file
+webpack/constants.js
