@@ -25,8 +25,6 @@ export function onPathChange(path: string): any {
 export function onGetAddress(tx: string): any {
     return async function (dispatch, getState) {
 
-        console.log("TrezorConnect", TrezorConnect);
-
         const bundled = getState().common.params.path.split(';');
         let response;
         if (bundled.length > 1) {

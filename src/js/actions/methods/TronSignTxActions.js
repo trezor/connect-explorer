@@ -4,8 +4,6 @@
 import TrezorConnect from 'trezor-connect';
 import { onResponse } from './CommonActions';
 
-console.log("TrezorConnect", TrezorConnect);
-
 const PREFIX: string = 'tron_signtx';
 export const PATH_CHANGE: string = `${PREFIX}_path_@change`;
 export const TX_CHANGE: string = `${PREFIX}_tx_@change`;
@@ -38,8 +36,6 @@ export function onSignTx(): any {
             dispatch( onResponse(response) );
 
         } catch(error) {
-            console.warn(error);
-
             dispatch( onResponse({
                 error: 'Invalid JSON'
             }) );
