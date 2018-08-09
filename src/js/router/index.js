@@ -8,7 +8,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import store, { history } from '../store';
 
 import AppContainer from '../containers/AppContainer';
-import { 
+import {
     CipherKeyValue,
     GetAccountInfo,
     GetAddress,
@@ -27,7 +27,9 @@ import {
     ComposeTransaction,
     RequestLogin,
     SignTx,
-    PushTx
+    PushTx,
+    TronGetAddress,
+    TronSignTx,
 } from '../components/methods';
 
 export default (
@@ -47,6 +49,8 @@ export default (
                     <Route exact path="/eth-verifymessage" component={ EthereumVerifyMessage } />
                     <Route exact path="/nem-getaddress" component={ NEMGetAddress } />
                     <Route exact path="/nem-signtx" component={ NEMSignTx } />
+                    <Route exact path="/tron-getaddress" component={ TronGetAddress } />
+                    <Route exact path="/tron-signtx" component={ TronSignTx } />
                     <Route exact path="/stellar-signtx" component={ StellarSignTx } />
                     <Route exact path="/stellar-getaddress" component={ StellarGetAddress } />
                     <Route exact path="/custom" component={ CustomMessage } />

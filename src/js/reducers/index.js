@@ -4,7 +4,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import DOM from './DomReducer';
+import DOM from './DOMReducer';
 import connect from './TrezorConnectReducer';
 import modal from './ModalReducer';
 
@@ -25,6 +25,8 @@ import ethverifymessage from './methods/EthereumVerifyMessageReducer';
 import nemgetaddress from './methods/NEMGetAddressReducer';
 import nemsigntx from './methods/NEMSignTxReducer';
 
+import trongetaddress from './methods/TronGetAddressReducer';
+import tronsigntx from './methods/TronSignTxReducer';
 
 import stellargetaddress from './methods/StellarGetAddressReducer';
 import stellarsigntx from './methods/StellarSignTxReducer';
@@ -39,7 +41,7 @@ export default combineReducers({
     DOM,
     connect,
     modal,
-    
+
     common,
     cipherkv,
     composetx,
@@ -54,12 +56,15 @@ export default combineReducers({
     ethsignmessage,
     ethverifymessage,
 
+    trongetaddress,
+    tronsigntx,
+
     nemgetaddress,
     nemsigntx,
 
     stellargetaddress,
     stellarsigntx,
-    
+
     custom,
     login,
     signtx,
