@@ -6,11 +6,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as CommonActions from '../../actions/methods/CommonActions';
-import * as StellarSignTxActions from '../../actions/methods/StellarSignTxActions';
+import * as CardanoMessageActions from '../../actions/methods/CardanoMessageActions';
 
 import Response from './common/Response';
 
-const StellarSignTx = (props): any => {
+const CardanoVerifyMessage = (props): any => {
 
     const {
         response,
@@ -20,16 +20,16 @@ const StellarSignTx = (props): any => {
     } = props.common;
 
     const {
-        path,
-        networkPassphrase,
-        transaction,
+        publicKey,
+        message,
+        signature,
     } = props.state;
 
     const {
-        onSignTx,
-        onPathChange,
-        onPassphraseChange,
-        onTransactionChange
+        onPublicKeyChange,
+        onMessageChange,
+        onSignatureChange,
+        onVerifyMessage
     } = props.methodActions;
 
     const {
@@ -42,25 +42,27 @@ const StellarSignTx = (props): any => {
             <div className="method-params">
 
                 <div className="row">
-                    <label>Path</label>
-                    <input type="text" className="small" value={ path } onChange={ event => onPathChange(event.target.value) } />
+                    <label>Public key</label>
+                    <input type="text" value={ publicKey } onChange={ event => onPublicKeyChange(event.target.value) } />
                 </div>
 
                 <div className="row">
-                    <label>Network Passphrase</label>
-                    <input type="text" value={ networkPassphrase } onChange={ event => onPassphraseChange(event.target.value) } />
+                    <label>Message</label>
+                    <textarea onChange={ event => onMessageChange(event.target.value) } value={ message }>
+                    </textarea>
                 </div>
 
-                <div className="transaction-json">
-                    <label>Transaction JSON</label>
-                    <textarea onChange={ event => onTransactionChange(event.target.value) } value={ transaction }>
+                <div className="row">
+                    <label>Signature</label>
+                    <textarea onChange={ event => onSignatureChange(event.target.value) } value={ signature }>
                     </textarea>
                 </div>
 
                 <div className="row">
                     <label></label>
-                    <button onClick={ event => onSignTx() }>Sign Stellar transaction</button>
+                    <button onClick={ event => onVerifyMessage() }>Verify message</button>
                 </div>
+
             </div>
 
             <Response 
@@ -77,13 +79,13 @@ export default connect(
     (state: State) => {
         return {
             common: state.common,
-            state: state.stellarsigntx,
+            state: state.cardanoverifymessage,
         };
     },
     (dispatch: Dispatch) => {
         return {
             commonActions: bindActionCreators(CommonActions, dispatch),
-            methodActions: bindActionCreators(StellarSignTxActions, dispatch),
+            methodActions: bindActionCreators(CardanoMessageActions, dispatch),
         };
     }
-)(StellarSignTx);
+)(CardanoVerifyMessage);

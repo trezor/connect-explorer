@@ -6,11 +6,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as CommonActions from '../../actions/methods/CommonActions';
-import * as StellarSignTxActions from '../../actions/methods/StellarSignTxActions';
+import * as RippleSignTxActions from '../../actions/methods/RippleSignTxActions';
 
 import Response from './common/Response';
 
-const StellarSignTx = (props): any => {
+const RippleSignTx = (props): any => {
 
     const {
         response,
@@ -28,7 +28,6 @@ const StellarSignTx = (props): any => {
     const {
         onSignTx,
         onPathChange,
-        onPassphraseChange,
         onTransactionChange
     } = props.methodActions;
 
@@ -46,11 +45,6 @@ const StellarSignTx = (props): any => {
                     <input type="text" className="small" value={ path } onChange={ event => onPathChange(event.target.value) } />
                 </div>
 
-                <div className="row">
-                    <label>Network Passphrase</label>
-                    <input type="text" value={ networkPassphrase } onChange={ event => onPassphraseChange(event.target.value) } />
-                </div>
-
                 <div className="transaction-json">
                     <label>Transaction JSON</label>
                     <textarea onChange={ event => onTransactionChange(event.target.value) } value={ transaction }>
@@ -59,7 +53,7 @@ const StellarSignTx = (props): any => {
 
                 <div className="row">
                     <label></label>
-                    <button onClick={ event => onSignTx() }>Sign Stellar transaction</button>
+                    <button onClick={ event => onSignTx() }>Sign Ripple transaction</button>
                 </div>
             </div>
 
@@ -77,13 +71,13 @@ export default connect(
     (state: State) => {
         return {
             common: state.common,
-            state: state.stellarsigntx,
+            state: state.ripplesigntx,
         };
     },
     (dispatch: Dispatch) => {
         return {
             commonActions: bindActionCreators(CommonActions, dispatch),
-            methodActions: bindActionCreators(StellarSignTxActions, dispatch),
+            methodActions: bindActionCreators(RippleSignTxActions, dispatch),
         };
     }
-)(StellarSignTx);
+)(RippleSignTx);

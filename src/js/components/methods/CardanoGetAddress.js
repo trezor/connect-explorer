@@ -6,11 +6,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as CommonActions from '../../actions/methods/CommonActions';
-import * as StellarSignTxActions from '../../actions/methods/StellarSignTxActions';
+import * as CardanoGetAddressActions from '../../actions/methods/CardanoGetAddressActions';
 
 import Response from './common/Response';
 
-const StellarSignTx = (props): any => {
+const CardanoGetAddress = (props): any => {
 
     const {
         response,
@@ -21,15 +21,13 @@ const StellarSignTx = (props): any => {
 
     const {
         path,
-        networkPassphrase,
-        transaction,
+        showOnTrezor,
     } = props.state;
 
     const {
-        onSignTx,
+        onGetAddress,
         onPathChange,
-        onPassphraseChange,
-        onTransactionChange
+        onConfirmationChange
     } = props.methodActions;
 
     const {
@@ -41,25 +39,25 @@ const StellarSignTx = (props): any => {
 
             <div className="method-params">
 
-                <div className="row">
-                    <label>Path</label>
-                    <input type="text" className="small" value={ path } onChange={ event => onPathChange(event.target.value) } />
+                <div className="type-path">
+                    <div className="row">
+                        <label>Path</label>
+                        <input type="text" className="small" value={ path } onChange={ event => onPathChange(event.target.value) } />
+                    </div>
                 </div>
 
-                <div className="row">
-                    <label>Network Passphrase</label>
-                    <input type="text" value={ networkPassphrase } onChange={ event => onPassphraseChange(event.target.value) } />
-                </div>
-
-                <div className="transaction-json">
-                    <label>Transaction JSON</label>
-                    <textarea onChange={ event => onTransactionChange(event.target.value) } value={ transaction }>
-                    </textarea>
+                <div className="row confirmation">
+                    <label></label>
+                    <label className="custom-checkbox align-left">
+                        Show on TREZOR
+                        <input type="checkbox" checked={ showOnTrezor } onChange={ event => onConfirmationChange(event.target.checked) } />
+                        <span className="indicator"></span>
+                    </label>
                 </div>
 
                 <div className="row">
                     <label></label>
-                    <button onClick={ event => onSignTx() }>Sign Stellar transaction</button>
+                    <button onClick={ event => onGetAddress() }>Get address</button>
                 </div>
             </div>
 
@@ -77,13 +75,13 @@ export default connect(
     (state: State) => {
         return {
             common: state.common,
-            state: state.stellarsigntx,
+            state: state.cardanogetaddress,
         };
     },
     (dispatch: Dispatch) => {
         return {
             commonActions: bindActionCreators(CommonActions, dispatch),
-            methodActions: bindActionCreators(StellarSignTxActions, dispatch),
+            methodActions: bindActionCreators(CardanoGetAddressActions, dispatch),
         };
     }
-)(StellarSignTx);
+)(CardanoGetAddress);

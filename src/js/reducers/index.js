@@ -25,11 +25,26 @@ import ethverifymessage from './methods/EthereumVerifyMessageReducer';
 import nemgetaddress from './methods/NEMGetAddressReducer';
 import nemsigntx from './methods/NEMSignTxReducer';
 
+import ripplegetaddress from './methods/RippleGetAddressReducer';
+import ripplesigntx from './methods/RippleSignTxReducer';
+
 import trongetaddress from './methods/TronGetAddressReducer';
 import tronsigntx from './methods/TronSignTxReducer';
 
 import stellargetaddress from './methods/StellarGetAddressReducer';
 import stellarsigntx from './methods/StellarSignTxReducer';
+
+import cardanogetaddress from './methods/CardanoGetAddressReducer';
+import cardanogetxpub from './methods/CardanoGetXpubReducer';
+import cardanosigntx from './methods/CardanoSignTxReducer';
+import cardanosignmessage from './methods/CardanoSignMessageReducer';
+import cardanoverifymessage from './methods/CardanoVerifyMessageReducer';
+
+import liskgetaddress from './methods/LiskGetAddressReducer';
+import liskgetxpub from './methods/LiskGetXpubReducer';
+import lisksigntx from './methods/LiskSignTxReducer';
+import lisksignmessage from './methods/LiskSignMessageReducer';
+import liskverifymessage from './methods/LiskVerifyMessageReducer';
 
 import custom from './methods/CustomMessageReducer';
 import login from './methods/RequestLoginReducer';
@@ -62,8 +77,23 @@ export default combineReducers({
     nemgetaddress,
     nemsigntx,
 
+    ripplegetaddress,
+    ripplesigntx,
+
     stellargetaddress,
     stellarsigntx,
+
+    cardanogetaddress,
+    cardanogetxpub,
+    cardanosigntx,
+    cardanosignmessage,
+    cardanoverifymessage,
+
+    liskgetaddress,
+    liskgetxpub,
+    lisksigntx,
+    lisksignmessage,
+    liskverifymessage,
 
     custom,
     login,

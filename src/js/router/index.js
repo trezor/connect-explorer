@@ -21,6 +21,8 @@ import {
     EthereumVerifyMessage,
     NEMGetAddress,
     NEMSignTx,
+    RippleGetAddress,
+    RippleSignTx,
     StellarGetAddress,
     StellarSignTx,
     CustomMessage,
@@ -28,6 +30,16 @@ import {
     RequestLogin,
     SignTx,
     PushTx,
+    CardanoGetAddress,
+    CardanoGetXpub,
+    CardanoSignTx,
+    CardanoSignMessage,
+    CardanoVerifyMessage,
+    LiskGetAddress,
+    LiskGetXpub,
+    LiskSignTx,
+    LiskSignMessage,
+    LiskVerifyMessage,
     TronGetAddress,
     TronSignTx,
 } from '../components/methods';
@@ -49,6 +61,8 @@ export default (
                     <Route exact path="/eth-verifymessage" component={ EthereumVerifyMessage } />
                     <Route exact path="/nem-getaddress" component={ NEMGetAddress } />
                     <Route exact path="/nem-signtx" component={ NEMSignTx } />
+                    <Route exact path="/ripple-signtx" component={ RippleSignTx } />
+                    <Route exact path="/ripple-getaddress" component={ RippleGetAddress } />
                     <Route exact path="/tron-getaddress" component={ TronGetAddress } />
                     <Route exact path="/tron-signtx" component={ TronSignTx } />
                     <Route exact path="/stellar-signtx" component={ StellarSignTx } />
@@ -58,6 +72,16 @@ export default (
                     <Route exact path="/composetx" component={ ComposeTransaction } />
                     <Route exact path="/sign-tx" component={ SignTx } />
                     <Route exact path="/push-tx" component={ PushTx } />
+                    <Route exact path="/cardano-getaddress" component={ CardanoGetAddress } />
+                    <Route exact path="/cardano-getxpub" component={ CardanoGetXpub } />
+                    <Route exact path="/cardano-signtx" component={ CardanoSignTx } />
+                    <Route exact path="/cardano-signmessage" component={ CardanoSignMessage } />
+                    <Route exact path="/cardano-verifymessage" component={ CardanoVerifyMessage } />
+                    <Route exact path="/lisk-getaddress" component={ LiskGetAddress } />
+                    <Route exact path="/lisk-getxpub" component={ LiskGetXpub } />
+                    <Route exact path="/lisk-signtx" component={ LiskSignTx } />
+                    <Route exact path="/lisk-signmessage" component={ LiskSignMessage } />
+                    <Route exact path="/lisk-verifymessage" component={ LiskVerifyMessage } />
                 </AppContainer>
             </Switch>
         </ConnectedRouter>

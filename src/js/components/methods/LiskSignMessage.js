@@ -6,11 +6,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as CommonActions from '../../actions/methods/CommonActions';
-import * as StellarSignTxActions from '../../actions/methods/StellarSignTxActions';
+import * as LiskMessageActions from '../../actions/methods/LiskMessageActions';
 
 import Response from './common/Response';
 
-const StellarSignTx = (props): any => {
+const LiskSignMessage = (props): any => {
 
     const {
         response,
@@ -21,20 +21,24 @@ const StellarSignTx = (props): any => {
 
     const {
         path,
-        networkPassphrase,
-        transaction,
+        message,
     } = props.state;
 
     const {
-        onSignTx,
         onPathChange,
-        onPassphraseChange,
-        onTransactionChange
+        onMessageChange,
+        onSignMessage,
+        verifyResponseValues
     } = props.methodActions;
 
     const {
         onTabChange
     } = props.commonActions;
+
+    let verifyResponse = null;
+    if (response && response.success) {
+        verifyResponse = (<button onClick={ event => verifyResponseValues(response) }>Verify response values</button>)
+    }
 
     return (
         <section className="method-content">
@@ -45,22 +49,17 @@ const StellarSignTx = (props): any => {
                     <label>Path</label>
                     <input type="text" className="small" value={ path } onChange={ event => onPathChange(event.target.value) } />
                 </div>
-
                 <div className="row">
-                    <label>Network Passphrase</label>
-                    <input type="text" value={ networkPassphrase } onChange={ event => onPassphraseChange(event.target.value) } />
-                </div>
-
-                <div className="transaction-json">
-                    <label>Transaction JSON</label>
-                    <textarea onChange={ event => onTransactionChange(event.target.value) } value={ transaction }>
+                    <label>Message</label>
+                    <textarea onChange={ event => onMessageChange(event.target.value) } value={ message }>
                     </textarea>
                 </div>
-
                 <div className="row">
                     <label></label>
-                    <button onClick={ event => onSignTx() }>Sign Stellar transaction</button>
+                    <button onClick={ event => onSignMessage() }>Sign message</button>
+                    { verifyResponse }
                 </div>
+
             </div>
 
             <Response 
@@ -77,13 +76,13 @@ export default connect(
     (state: State) => {
         return {
             common: state.common,
-            state: state.stellarsigntx,
+            state: state.lisksignmessage,
         };
     },
     (dispatch: Dispatch) => {
         return {
             commonActions: bindActionCreators(CommonActions, dispatch),
-            methodActions: bindActionCreators(StellarSignTxActions, dispatch),
+            methodActions: bindActionCreators(LiskMessageActions, dispatch),
         };
     }
-)(StellarSignTx);
+)(LiskSignMessage);

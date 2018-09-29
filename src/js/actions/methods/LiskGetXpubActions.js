@@ -4,7 +4,7 @@
 import TrezorConnect from 'trezor-connect';
 import { onResponse } from './CommonActions';
 
-const PREFIX: string = 'stellar_getaddress';
+const PREFIX: string = 'lisk_getxpub';
 export const NETWORK_CHANGE: string = `${PREFIX}_network_@change`;
 export const PATH_CHANGE: string = `${PREFIX}_path_@change`;
 export const CONFIRMATION_CHANGE: string = `${PREFIX}_confirmation_@change`;
@@ -23,7 +23,7 @@ export function onPathChange(path: string): any {
     }
 }
 
-export function onGetAddress(tx: string): any {
+export function onGetXpub(tx: string): any {
     return async function (dispatch, getState) {
         const params = getState().common.params;
         const bundled = params.path.split(';');
@@ -32,9 +32,9 @@ export function onGetAddress(tx: string): any {
             const bundle = bundled.map(b => {
                 return { path: b, showOnTrezor: params.showOnTrezor }
             });
-            response = await TrezorConnect.stellarGetAddress( { bundle } );
+            response = await TrezorConnect.liskGetPublicKey( { bundle } );
         } else {
-            response = await TrezorConnect.stellarGetAddress( params );
+            response = await TrezorConnect.liskGetPublicKey( params );
         }
 
         dispatch( onResponse(response) );

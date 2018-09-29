@@ -4,17 +4,11 @@
 import TrezorConnect from 'trezor-connect';
 import { onResponse } from './CommonActions';
 
-const PREFIX: string = 'stellar_signtx';
+const PREFIX: string = 'lisk_signtx';
 export const PATH_CHANGE: string = `${PREFIX}_path_@change`;
-export const PASSPHRASE_CHANGE: string = `${PREFIX}_passphrase_@change`;
 export const TX_CHANGE: string = `${PREFIX}_tx_@change`;
 
-export function onTransactionChange(transaction: string): any {
-    return {
-        type: TX_CHANGE,
-        transaction
-    }
-}
+
 
 export function onPathChange(path: string): any {
     return {
@@ -23,21 +17,19 @@ export function onPathChange(path: string): any {
     }
 }
 
-export function onPassphraseChange(passphrase: string): any {
+export function onTransactionChange(transaction: string): any {
     return {
-        type: PASSPHRASE_CHANGE,
-        passphrase
+        type: TX_CHANGE,
+        transaction
     }
 }
 
 export function onSignTx(): any {
     return async function (dispatch, getState) {
-        const { path, networkPassphrase, transaction } = getState().stellarsigntx;
-
+        const { path, transaction } = getState().lisksigntx;
         const tx = eval(`[${transaction}]`);
-        const response = await TrezorConnect.stellarSignTransaction({
-            path: path,
-            networkPassphrase,
+        const response = await TrezorConnect.liskSignTransaction({
+            path: path, 
             transaction: tx[0]
         });
 
