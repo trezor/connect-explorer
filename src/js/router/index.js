@@ -19,6 +19,8 @@ import {
     EthereumSignTx,
     EthereumSignMessage,
     EthereumVerifyMessage,
+    HyconGetAddress,
+    HyconSignTx,
     NEMGetAddress,
     NEMSignTx,
     RippleGetAddress,
@@ -57,6 +59,8 @@ export default (
                     <Route exact path="/eth-signtx" component={ EthereumSignTx } />
                     <Route exact path="/eth-signmessage" component={ EthereumSignMessage } />
                     <Route exact path="/eth-verifymessage" component={ EthereumVerifyMessage } />
+                    <Route exact path="/hycon-getaddress" component={ HyconGetAddress } />
+                    <Route exact path="/hycon-signtx" component={ HyconSignTx } />
                     <Route exact path="/nem-getaddress" component={ NEMGetAddress } />
                     <Route exact path="/nem-signtx" component={ NEMSignTx } />
                     <Route exact path="/ripple-signtx" component={ RippleSignTx } />

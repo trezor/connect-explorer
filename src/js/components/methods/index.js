@@ -11,6 +11,8 @@ export { default as EthereumGetAddress } from './EthereumGetAddress';
 export { default as EthereumSignTx } from './EthereumSignTx';
 export { default as EthereumSignMessage } from './EthereumSignMessage';
 export { default as EthereumVerifyMessage } from './EthereumVerifyMessage';
+export { default as HyconGetAddress } from './HyconGetAddress';
+export { default as HyconSignTx } from './HyconSignTx';
 export { default as NEMSignTx } from './NEMSignTx';
 export { default as NEMGetAddress } from './NEMGetAddress'; 
 export { default as RippleSignTx } from './RippleSignTx';

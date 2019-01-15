@@ -35,6 +35,8 @@ export default class Main extends Component {
                     { navLink('/eth-signtx', 'Ethereum Sign Transaction') }
                     { navLink('/eth-signmessage', 'Ethereum Sign Message') }
                     { navLink('/eth-verifymessage', 'Ethereum Verify Message') }
+                    { navLink('/hycon-getaddress', 'Hycon Get Address') }
+                    { navLink('/hycon-signtx', 'Hycon Sign Transaction') }
                     { navLink('/nem-getaddress', 'NEM Get Address') }
                     { navLink('/nem-signtx', 'NEM Sign Transaction') }
                     { navLink('/stellar-getaddress', 'Stellar Get Address') }

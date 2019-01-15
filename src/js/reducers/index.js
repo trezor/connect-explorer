@@ -22,6 +22,9 @@ import ethsigntx from './methods/EthereumSignTxReducer';
 import ethsignmessage from './methods/EthereumSignMessageReducer';
 import ethverifymessage from './methods/EthereumVerifyMessageReducer';
 
+import hycongetaddress from './methods/HyconGetAddressReducer';
+import hyconsigntx from './methods/HyconSignTxReducer';
+
 import nemgetaddress from './methods/NEMGetAddressReducer';
 import nemsigntx from './methods/NEMSignTxReducer';
 
@@ -67,6 +70,9 @@ export default combineReducers({
     ethsigntx,
     ethsignmessage,
     ethverifymessage,
+
+    hycongetaddress,
+    hyconsigntx,
 
     nemgetaddress,
     nemsigntx,
