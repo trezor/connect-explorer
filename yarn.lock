@@ -6419,10 +6419,10 @@ tough-cookie@~2.3.3:
   dependencies:
     punycode "^1.4.1"
 
-trezor-connect@^6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/trezor-connect/-/trezor-connect-6.0.2.tgz#a4ca892cc4a167b34b97644e1404a56f6a110379"
-  integrity sha512-oSYTPnQD9ZT3vO2hBRdgealHG7t8Wu3oTZXX/U4eRxJZ0WqdEcXG7Nvqe1BL6Rl3VTuj7ALT9DL1Uq3QFYAc3g==
+trezor-connect@6.0.4:
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/trezor-connect/-/trezor-connect-6.0.4.tgz#9225e1448e2c9a0b599235f36579805fd2504c74"
+  integrity sha512-pIn0/fQ6SPd08Jon0ul1JmJqHqEGgDWDQei4dghpj/5+7KtVh1QuSsL4PBBJqcwp6uTM+nolqRAkrhDD2xqi5Q==
   dependencies:
     babel-runtime "^6.26.0"
     events "^1.1.1"
