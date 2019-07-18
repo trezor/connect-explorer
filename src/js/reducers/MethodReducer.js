@@ -6,6 +6,7 @@ import stringifyObject from 'stringify-object';
 import {
     TAB_CHANGE,
     FIELD_CHANGE,
+    FIELD_DATA_CHANGE,
     ADD_BATCH,
     REMOVE_BATCH,
     RESPONSE 
@@ -85,6 +86,13 @@ const updateJavascript = (state) => {
     const code = Object.keys(state.params).length > 0 ? stringifyObject(state.params, {
         indent: '  ',
         singleQuotes: false,
+        transform: (obj, prop, originalResult) => {
+            if (Object.prototype.toString.call(obj[prop]) === '[object ArrayBuffer]') {
+                return 'ArrayBuffer';
+            } else {
+                return originalResult;
+            }
+        }
     }) : '';
 
     return {
@@ -111,14 +119,17 @@ const setAffectedValues = (state, field) => {
             root = state.fields;
         }
 
-
         affectedFieldNames.forEach((af, index) => {
             const affectedField = root.find(f => f.name === af);
             if (affectedField) {
                 affectedField.value = values[index];
             }
         });
+    } else if (field.affect && typeof field.affect === 'string' && field.value) {
+        const affectedField = state.fields.find(f => f.name === field.affect);
+        affectedField.value = field.value;
     }
+
     return field;
 };
 
@@ -144,12 +155,22 @@ const findField = (state, field) => {
 }
 
 const onFieldChange = (state, action) => {
-    const newState = JSON.parse(JSON.stringify(state));
+    const newState = {
+        ...JSON.parse(JSON.stringify(state)),
+        ...state,
+    };
     const field = findField(newState, action.field);
     field.value = action.value;
     if (field.affect) {
         setAffectedValues(newState, field);
     }
+    return updateParams(newState);
+};
+
+const onFieldDataChange = (state, action) => {
+    const newState = state;
+    const field = findField(newState, action.field);
+    field.data = action.data;
     return updateParams(newState);
 };
 
@@ -159,7 +180,11 @@ const getMethodState = (url) => {
     const method = config.find(m => m.url === url);
     if (!method) return initialState;
     // clone object
-    const state = JSON.parse(JSON.stringify(method));
+    const state = {
+        ...JSON.parse(JSON.stringify(method)),
+        ...method,
+    };
+
     // set default values
     state.fields = state.fields.map(f => setAffectedValues(state, prepareBundle(f)));
     state.tab = initialState.tab;
@@ -206,6 +231,9 @@ export default function method(state: ModalState = initialState, action: any): a
 
         case FIELD_CHANGE:
             return onFieldChange(state, action);
+ 
+        case FIELD_DATA_CHANGE:
+            return onFieldDataChange(state, action);
 
         case ADD_BATCH:
             return onAddBatch(state, action);
