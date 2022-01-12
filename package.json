@@ -20,7 +20,7 @@
     },
     "dependencies": {
         "connected-react-router": "6.0.0",
-        "markdown-it": "^8.4.2",
+        "markdown-it": "^12.3.2",
         "markdown-it-link-attributes": "^2.1.0",
         "markdown-it-replace-link": "^1.0.1",
         "react": "^16.8.1",
